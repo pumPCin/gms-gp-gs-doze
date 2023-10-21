@@ -15,9 +15,11 @@ ui_print "- Patching XML files"
 {
 APP1="\"com.google.android.gms"\"
 APP2="\"com.android.vending"\"
+APP3="\"com.sec.android.app.samsungapps"\"
 PRM1="allow-in-power-save package=$APP1"
 PRM2="allow-in-data-usage-save package=$APP1"
 PRM3="allow-in-power-save-except-idle package=$APP2"
+PRM4="allow-in-power-save package=$APP3"
 NULL="/dev/null"
 }
 ui_print "- Finding system XML"
@@ -25,7 +27,7 @@ SYS_XML="$(
 SXML="$(find /system_ext/* /system/* /product/* \
 /vendor/* -type f -iname '*.xml' -print)"
 for S in $SXML; do
-if grep -qE "$PRM1|$PRM2|$PRM3" $ROOT$S 2> $NULL; then
+if grep -qE "$PRM1|$PRM2|$PRM3|$PRM4" $ROOT$S 2> $NULL; then
 echo "$S"
 fi
 done
@@ -36,7 +38,7 @@ for SX in $SYS_XML; do
 mkdir -p "$(dirname $MODPATH$SX)"
 cp -af $ROOT$SX $MODPATH$SX
  ui_print "  Patching: $SX"
-sed -i "/$PRM1/d;/$PRM2/d;/$PRM3/d" $MODPATH/$SX
+sed -i "/$PRM1/d;/$PRM2/d;/$PRM3/d;/$PRM4/d" $MODPATH/$SX
 done
 
 # Merge patched files under /system dir
@@ -54,7 +56,7 @@ done
 MOD_XML="$(
 MXML="$(find /data/adb/* -type f -iname "*.xml" -print)"
 for M in $MXML; do
-if grep -qE "$PRM1|$PRM2|$PRM3" $M; then
+if grep -qE "$PRM1|$PRM2|$PRM3|$PRM4" $M; then
 echo "$M"
 fi
 done
@@ -65,7 +67,7 @@ PATCH_MX() {
 for MX in $MOD_XML; do
 MOD="$(echo "$MX" | awk -F'/' '{print $5}')"
  ui_print "  $MOD: $MX"
-sed -i "/$PRM1/d;/$PRM2/d;/$PRM3/d" $MX
+sed -i "/$PRM1/d;/$PRM2/d;/$PRM3/d;/$PRM4/d" $MX
 done
 }
 

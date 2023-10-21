@@ -19,6 +19,7 @@ done
 # Remove GMS-GP-GS from battery optimization
 dumpsys deviceidle whitelist +com.google.android.gms &> $NULL
 dumpsys deviceidle whitelist +com.android.vending &> $NULL
+dumpsys deviceidle whitelist +com.sec.android.app.samsungapps &> $NULL
 
 exit 0
 )
