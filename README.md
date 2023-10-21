@@ -7,9 +7,9 @@
 ## Troubleshootings
 - Command-line for check optimization (in general):   
 There's a line written `Whitelist (except idle) system apps:` 
-If `com.google.android.gms` line does not exist it means Google Play Services app is optimized.
-If `com.android.vending` line does not exist it means Google Play app is optimized.
-If `com.sec.android.app.samsungapps` line does not exist it means Galaxy Store app is optimized.
+* If `com.google.android.gms` line does not exist it means Google Play Services app is optimized.
+* If `com.android.vending` line does not exist it means Google Play app is optimized.
+* If `com.sec.android.app.samsungapps` line does not exist it means Galaxy Store app is optimized.
 ```
 > su
 > dumpsys deviceidle
