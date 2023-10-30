@@ -1,7 +1,7 @@
 id=gms-gp-gs-doze
 name=GMS-GP-GS Doze
-version=1.0
-versionCode=10
+version=1.1
+versionCode=11
 author=pumPCin
 description=Patches Google Play Services, Google Play, Galaxy Store - apps and certain processes/services to be able to use battery optimization
 updateJson=https://raw.githubusercontent.com/pumPCin/gms-gp-gs-doze/master/module.json
