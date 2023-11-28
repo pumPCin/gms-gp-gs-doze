@@ -11,7 +11,7 @@ NULL="/dev/null"
 
 # Enable collective device administrators
 for U in $(ls /data/user); do
-for C in $GMS1 $GMS2; do
+for C in $GMS1 $GMS2 $GMS3; do
 pm enable --user $U "$APP1/$APP1.$C" &> $NULL
 done
 done

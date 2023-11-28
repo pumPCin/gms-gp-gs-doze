@@ -6,6 +6,22 @@ set -x
 # GMS-GP-GS Doze
 # Patches Google Play Services, Google Play, Galaxy Store - apps and certain processes/services to be able to use battery optimization
 
+# Check root environment
+VER=`grep_prop version $MODPATH/module.prop`
+VERCODE=`grep_prop versionCode $MODPATH/module.prop`
+ui_print "  ID: $MODID"
+ui_print "  Version: $VER"
+ui_print "  VersionCode: $VERCODE"
+if [ "$KSU" == true ]; then
+ui_print "  KSUVersion: $KSU_VER"
+ui_print "  KSUVersionCode: $KSU_VER_CODE"
+ui_print "  KSUKernelVersionCode: $KSU_KERNEL_VER_CODE"
+else
+ui_print "  MagiskVersion: $MAGISK_VER"
+ui_print "  MagiskVersionCode: $MAGISK_VER_CODE"
+fi
+ui_print " "
+
 # Check Android API
 [ $API -ge 23 ] ||
  abort "- Unsupported API version: $API"
@@ -27,7 +43,7 @@ PRM6="allow-in-power-save-except-idle package=$APP4"
 PRM7="allow-in-power-save package=$APP5"
 NULL="/dev/null"
 }
-ui_print "- Finding system XML"
+ui_print "- Searching default XML files"
 SYS_XML="$(
 SXML="$(find /system_ext/* /system/* /product/* \
 /vendor/* -type f -iname '*.xml' -print)"
@@ -49,7 +65,7 @@ done
 # Merge patched files under /system dir
 for P in product vendor; do
 if [ -d $MODPATH/$P ]; then
- ui_print "- Moving files to module dir"
+ ui_print "- Moving files to module directory"
 mkdir -p $MODPATH/system/$P
 mv -f $MODPATH/$P $MODPATH/system/
 fi
@@ -68,7 +84,7 @@ done
 )"
 
 PATCH_MX() {
- ui_print "- Finding conflicting XML"
+ ui_print "- Searching conflicting XML"
 for MX in $MOD_XML; do
 MOD="$(echo "$MX" | awk -F'/' '{print $5}')"
  ui_print "  $MOD: $MX"
