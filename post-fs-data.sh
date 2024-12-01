@@ -2,7 +2,7 @@
 set -o standalone
 
 # GP-GS Doze
-# Patches Google Play, Galaxy Store - apps and certain processes/services to be able to use battery optimization
+# Patches Google Play, Galaxy Store to be able to use battery optimization
 
 # Search and patch any conflicting modules (if present)
 {

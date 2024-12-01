@@ -4,7 +4,7 @@ set -o standalone
 set -x
 
 # GP-GS Doze
-# Patches Google Play, Galaxy Store - apps and certain processes/services to be able to use battery optimization
+# Patches Google Play, Galaxy Store to be able to use battery optimization
 
 # Check root implementation
 ui_print "- Checking root implementation"
@@ -37,7 +37,7 @@ PRM2="allow-in-power-save-except-idle package=$APP1"
 PRM3="allow-in-data-usage-save package=$APP1"
 PRM4="allow-in-power-save package=$APP2"
 PRM5="allow-in-power-save-except-idle package=$APP2"
-PRM3="allow-in-data-usage-save package=$APP2"
+PRM6="allow-in-data-usage-save package=$APP2"
 NULL="/dev/null"
 }
 ui_print "- Searching default XML files"
