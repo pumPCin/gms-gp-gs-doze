@@ -92,6 +92,11 @@ done
 # Find and patch conflicting XML
 PATCH_SX && PATCH_MX
 
+# Clear old GMS data on first install (should fix delayed incoming messages)
+cd /data/data
+find . -type f -name '*gms*' -delete
+ui_print "- Clearing old GMS data"
+
 FINALIZE() {
 ui_print "- Finalizing installation"
 
